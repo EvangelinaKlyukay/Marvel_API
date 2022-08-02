@@ -13,6 +13,8 @@
 		A689E2BE2897EF6D00890DB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A689E2BC2897EF6D00890DB4 /* Main.storyboard */; };
 		A689E2C02897EF7000890DB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A689E2BF2897EF7000890DB4 /* Assets.xcassets */; };
 		A689E2C32897EF7000890DB4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A689E2C12897EF7000890DB4 /* LaunchScreen.storyboard */; };
+		A689E2CD2897FA4100890DB4 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A689E2CC2897FA4100890DB4 /* NetworkManager.swift */; };
+		A689E2D0289801D000890DB4 /* ComicsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A689E2CF289801D000890DB4 /* ComicsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		A689E2BF2897EF7000890DB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A689E2C22897EF7000890DB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A689E2C42897EF7000890DB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A689E2CC2897FA4100890DB4 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		A689E2CF289801D000890DB4 /* ComicsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +62,39 @@
 			children = (
 				A689E2B62897EF6D00890DB4 /* AppDelegate.swift */,
 				A689E2B82897EF6D00890DB4 /* SceneDelegate.swift */,
-				A689E2BA2897EF6D00890DB4 /* ViewController.swift */,
+				A689E2CE289801BB00890DB4 /* Model */,
+				A689E2CB2897FA1700890DB4 /* NetworkManager */,
+				A689E2CA2897FA0600890DB4 /* ViewController */,
 				A689E2BC2897EF6D00890DB4 /* Main.storyboard */,
 				A689E2BF2897EF7000890DB4 /* Assets.xcassets */,
 				A689E2C12897EF7000890DB4 /* LaunchScreen.storyboard */,
 				A689E2C42897EF7000890DB4 /* Info.plist */,
 			);
 			path = Marvel_API;
+			sourceTree = "<group>";
+		};
+		A689E2CA2897FA0600890DB4 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A689E2BA2897EF6D00890DB4 /* ViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		A689E2CB2897FA1700890DB4 /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				A689E2CC2897FA4100890DB4 /* NetworkManager.swift */,
+			);
+			path = NetworkManager;
+			sourceTree = "<group>";
+		};
+		A689E2CE289801BB00890DB4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A689E2CF289801D000890DB4 /* ComicsModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +168,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A689E2D0289801D000890DB4 /* ComicsModel.swift in Sources */,
+				A689E2CD2897FA4100890DB4 /* NetworkManager.swift in Sources */,
 				A689E2BB2897EF6D00890DB4 /* ViewController.swift in Sources */,
 				A689E2B72897EF6D00890DB4 /* AppDelegate.swift in Sources */,
 				A689E2B92897EF6D00890DB4 /* SceneDelegate.swift in Sources */,
