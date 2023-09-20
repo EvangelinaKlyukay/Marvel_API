@@ -6,6 +6,7 @@ target 'Marvel_API' do
   use_frameworks!
 
 pod 'Alamofire'
+pod 'Kingfisher', '~> 7.0'
 
   # Pods for Marvel_API
 

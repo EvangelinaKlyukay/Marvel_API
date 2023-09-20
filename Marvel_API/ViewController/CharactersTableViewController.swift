@@ -40,19 +40,21 @@ class CharactersTableViewController: UIViewController {
             print(error.localizedDescription)
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        if segue.identifier == "showCharacter" {
+            let characterController = segue.destination as! DescriptionCharacterViewController
+            let cell = sender as! CharacterTableViewCell
+            characterController.character = cell.character
+        }
+    }
 }
 
 extension CharactersTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         charactersTableView.deselectRow(at: indexPath, animated: true)
-        
-        if isSearching {
-            let selectedCountry = searchingCharacters[indexPath.row]
-            print(selectedCountry)
-        } else {
-            let selectedCountry = characters[indexPath.row]
-            print(selectedCountry)
-        }
         
         self.searchBar.searchTextField.endEditing(true)
     }
