@@ -11,12 +11,27 @@ import CryptoKit
 
 class APIService {
     
-    func getCharacters(completion: @escaping ([CharacterModel]) -> Void, onFail: ((Error) -> Void)?) {
-        
+    func makeUrl() -> URL? {
         let timestamp = "\(Date().timeIntervalSince1970)"
         let hash = stringToMD5(string: "\(timestamp)\(MARVEL_PRIVATE_KEY)\(MARVEL_PUBLIC_KEY)")
         
-        AF.request("https://gateway.marvel.com/v1/public/characters?ts=\(timestamp)&apikey=\(MARVEL_PUBLIC_KEY)&hash=\(hash)").responseJSON { response in
+           var components = URLComponents()
+           components.scheme = "https"
+           components.host = "gateway.marvel.com"
+           components.path = "/v1/public/characters"
+           components.queryItems = [
+               URLQueryItem(name: "ts", value: timestamp),
+               URLQueryItem(name: "apikey", value: MARVEL_PUBLIC_KEY),
+               URLQueryItem(name: "hash", value: hash),
+           ]
+           return components.url
+       }
+    
+    func getCharacters(completion: @escaping ([CharacterModel]) -> Void, onFail: ((Error) -> Void)?) {
+        
+        guard let url = makeUrl() else {return}
+        
+        AF.request(url).responseJSON { response in
             switch response.result {
             case .success(let data):
                 guard let json = data as? [String: Any] else {
