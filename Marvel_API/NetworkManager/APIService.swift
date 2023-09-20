@@ -15,7 +15,6 @@ class APIService {
         
         let timestamp = "\(Date().timeIntervalSince1970)"
         let hash = stringToMD5(string: "\(timestamp)\(MARVEL_PRIVATE_KEY)\(MARVEL_PUBLIC_KEY)")
-        print("hash: \(hash)")
         
         AF.request("https://gateway.marvel.com/v1/public/characters?ts=\(timestamp)&apikey=\(MARVEL_PUBLIC_KEY)&hash=\(hash)").responseJSON { response in
             switch response.result {

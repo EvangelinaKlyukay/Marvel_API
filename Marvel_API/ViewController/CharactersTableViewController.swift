@@ -15,12 +15,16 @@ class CharactersTableViewController: UIViewController {
     private var characters: [CharacterModel] = []
     private let network = APIService()
     
+    private var isSearching = false
+    private var searchingCharacters: [CharacterModel] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         charactersTableView.dataSource = self
         charactersTableView.delegate = self
+        searchBar.delegate = self
         
         fetchData()
     }
@@ -41,19 +45,56 @@ class CharactersTableViewController: UIViewController {
 extension CharactersTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         charactersTableView.deselectRow(at: indexPath, animated: true)
+        
+        if isSearching {
+            let selectedCountry = searchingCharacters[indexPath.row]
+            print(selectedCountry)
+        } else {
+            let selectedCountry = characters[indexPath.row]
+            print(selectedCountry)
+        }
+        
+        self.searchBar.searchTextField.endEditing(true)
     }
 }
 
 extension CharactersTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        characters.count
+        
+        if isSearching {
+            return searchingCharacters.count
+        } else {
+            return characters.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "CharactersCell", for: indexPath)
-        (cell as? CharacterTableViewCell)?.character = characters[indexPath.row]
+        
+        if isSearching {
+            (cell as? CharacterTableViewCell)?.character = searchingCharacters[indexPath.row]
+        } else {
+            (cell as? CharacterTableViewCell)?.character = characters[indexPath.row]
+        }
         return cell
     }
+}
+
+extension CharactersTableViewController: UISearchBarDelegate {
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        searchingCharacters = characters.filter({ ($0.name?.lowercased().prefix(searchText.count))! == searchText.lowercased() })
+        isSearching = true
+        charactersTableView.reloadData()
+        
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        isSearching = false
+        searchBar.text = ""
+        charactersTableView.reloadData()
+    }
     
 }
